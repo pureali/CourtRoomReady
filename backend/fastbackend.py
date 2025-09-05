@@ -27,7 +27,7 @@ async def post_message(data: Dict[str, str]):
     return {"message": f"Received: {message}"}
 @app.get("/api/status")
 async def get_status():
-    return {"status": "running"}
+    return {"status": "running perfectly"}
 
 @app.get("/items/{item_id}")
 async def read_item(item_id: int, query_params: Dict[str, str] = {}):

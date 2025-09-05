@@ -6,6 +6,7 @@
 
     //const videoElement = document.getElementById("persona-video");
     const statusElement = document.getElementById("status");
+    
 
     async function createSessionToken() {
         const response = await fetch("https://api.anam.ai/v1/auth/session-token", {
@@ -29,7 +30,7 @@
         return data.sessionToken;
     }
 
-    async function startChat(videoElementId="persona-video") {
+    export async function startChat(videoElementId="persona-video") {
         try {
             statusElement.textContent = "Creating session...";
 

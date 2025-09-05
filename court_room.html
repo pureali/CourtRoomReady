@@ -178,9 +178,8 @@
         <div class="judge-section">
             <div class="judge-box">
                 <div class="court-box-title">Judge</div>
-                <div class="judge-avatar">
-                    <img src="images/judge-avatar.png" alt="Judge Avatar" />
-                    <video id="persona-video" autoplay playsinline style="display:none;"></video>
+                <div class="judge-avatar">                    
+                    <video id="persona-video" autoplay playsinline style="display:block;"></video>
                 </div>
                 <div id="status" style="margin-top: 10px; font-size: 14px; color: #666;">Loading...</div>
                 
@@ -207,6 +206,24 @@
     <div class="start-btn-container" id="startBtnContainer">
         <button class="start-btn" id="startBtn">Start Court Proceedings</button>
     </div>
+    <div class="court-controls" style="width:100%; text-align:center; margin:30px 0 20px 0;">
+        <button id="playBtn" style="background:#2d5be3;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-right:16px;">Run</button>
+        <button id="stopBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Stop</button>
+        <button id="smileBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Smile</button>
+    </div>
+    <script type="module">
+        import { startChat, stopStreaming,sendUserMessage } from './judge.js';
+
+        document.getElementById('playBtn').onclick = () => {
+            startChat("persona-video");
+        };
+        document.getElementById('stopBtn').onclick = () => {
+            stopStreaming();
+        };
+        document.getElementById('smileBtn').onclick = () => {
+            sendUserMessage("Note to AI: show angry and frustration face without saying anything");
+        };
+    </script>
     <script>
         document.getElementById('startBtn').onclick = function() {
             // Hide start button and overlay background
@@ -222,6 +239,8 @@
                     document.getElementById('user-box').innerHTML += '<div style="color:#ffb4b4;">Unable to access camera.</div>';
                 });
         }
+        
     </script>
+     
 </body>
 </html>
