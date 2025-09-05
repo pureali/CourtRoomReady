@@ -39,9 +39,10 @@
 
             const anamClient = createClient(sessionToken);
             await anamClient.streamToVideoElement(videoElementId);
+            
             client=anamClient;
 
-            statusElement.textContent = "Connected! Start speaking to Cara";
+            statusElement.textContent = "Connected! Start speaking to Judge Richard";
 
         } catch (error) {
             console.error("Failed to start chat:", error);
@@ -108,5 +109,25 @@
         }
         
     }
+    export async function eventMessageHistoryUpdated(functionCallback){ 
+        try {
+             console.log('eventMessageHistoryUpdated triggered():', messages);
+            if(client){
+                client.addListener('messageHistoryUpdated', (messages) => {
+                    console.log('Message history updated event received:', messages);
+                    functionCallback(messages);
+                });
+                statusElement.textContent = "Listening for message history updates.";
+            }
+        } catch (error) {
+            console.error("Failed to set up message history updated listener:", error);
+            statusElement.textContent = "Failed to set up listener.";
+        }
+        
+    }  
+
+
+        
+
     // Auto-start when page loads
     //startChat();

@@ -214,14 +214,25 @@
         <button id="stopBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Stop</button>
         <button id="smileBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Smile</button>
     </div>
+    <script>
+        function messageHistoryUpdated(messages) {
+            console.log('Updated Messages:', messages);
+            alert('Message history updated. Check console for details.');
+        }
+    </script>
     <script type="module">
-        import { startChat, stopStreaming,sendUserMessage } from './judge.js';
-        import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor } from './councellor.js';
+        import { startChat, stopStreaming,sendUserMessage,eventMessageHistoryUpdated } from './judge.js';
+        import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor } from './councellor.js';
 
         
-        document.getElementById('playBtn').onclick = () => {
-            startChat("persona-video");
-            startChatCouncellor("councellor-video");
+
+        document.getElementById('playBtn').onclick = async () => {
+            await startChat("persona-video");
+            await startChatCouncellor("councellor-video");
+            await eventMessageHistoryUpdated(messageHistoryUpdated);
+            await stopCurrentGenerationCouncellor();
+           // await sendUserMessageCouncellor("Note to AI: stop talking and listen carefully to the user without saying anything");
+            
 
         };
         document.getElementById('stopBtn').onclick = () => {

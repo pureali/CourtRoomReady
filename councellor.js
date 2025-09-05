@@ -42,6 +42,7 @@
             client=anamClient;
 
             statusElement.textContent = "Connected! Start speaking to Cara";
+            
 
         } catch (error) {
             console.error("Failed to start chat:", error);
@@ -58,7 +59,7 @@
 
 
     }
-    export async function stopCurrentGeneration(){
+    export async function stopCurrentGenerationCouncellor(){
         try{
             client.stopCurrentGeneration();
             statusElement.textContent = "Current generation stopped.";
@@ -108,5 +109,6 @@
         }
         
     }
+    
     // Auto-start when page loads
     //startChat();
