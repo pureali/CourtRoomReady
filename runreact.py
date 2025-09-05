@@ -1,6 +1,12 @@
 import subprocess
 import os
 
+def runPythonBackend():
+    backend_dir = os.path.join(os.getcwd(), "my-app", "backend")
+    try:
+        subprocess.Popen(["python", "fastbackend.py"], cwd=backend_dir)
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to run Python backend: {e}")
 def run_react_app():
     project_dir = os.path.join(os.getcwd(), "my-app")
     if not os.path.isdir(project_dir):
@@ -12,4 +18,5 @@ def run_react_app():
         print(f"Failed to run React app: {e}")
 
 if __name__ == "__main__":
+    runPythonBackend()
     run_react_app()

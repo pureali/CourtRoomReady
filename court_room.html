@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Court Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: url('images/civil-court-bg.webp') center center/cover no-repeat fixed;
+            position: relative;
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(30,40,70,0.65);
+            z-index: 0;
+        }
+        .court-title-bar {
+            width: 100vw;
+            background: #000;
+            color: #fff;
+            padding: 18px 0 14px 0;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        }
+        .court-layout {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: 80px; /* space for title bar */
+        }
+        .judge-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 48px;
+        }
+        .judge-box {
+            background: rgba(44,62,80,0.95);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+            padding: 24px 24px 18px 24px;
+            text-align: center;
+            width: 450px;
+            height: 450px;
+            border: 2px solid #e8d5b7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .judge-title {
+            display: none; /* moved to top bar */
+        }
+        .judge-avatar {
+           
+            width: 440px;
+            height: 440px;
+            border-radius: 12px;
+            background: #fff;
+            margin: 0 auto 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+        .judge-avatar img, .judge-avatar video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .bottom-section {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .court-box {
+            background: rgba(44,62,80,0.93);
+            border-radius: 14px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+            padding: 5px; /* Reduced padding */
+            width: 310px;
+            min-height: 310px;
+            text-align: center;
+            border: 2px solid #2d5be3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.18rem;
+        }
+        .court-box-title {
+            font-size: 1rem; /* Reduced font size */
+            font-weight: 600;
+            color: #fff;
+            background: #000;
+            padding: 6px 0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .user-video, .avatar-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 12px;
+            background: #222b3a;
+            margin-bottom: 12px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            font-size: 2.2rem;
+        }
+        .avatar-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8d5b7;
+            font-size: 2.8rem;
+            background: #1a233a;
+        }
+        .start-btn-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30,40,70,0.85);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .start-btn {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 22px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+            transition: background 0.2s;
+        }
+        .start-btn:hover {
+            background: #219150;
+        }
+        @media (max-width: 900px) {
+            .judge-box { width: 40vw; min-width: 140px; }
+            .bottom-section { gap: 12px; }
+            .court-box { width: 30vw; min-width: 140px; }
+        }
+        @media (max-width: 600px) {
+            .court-title-bar { font-size: 1.2rem; padding: 14px 0 10px 0; }
+            .judge-section { margin-top: 24px; }
+            .bottom-section { flex-direction: column; align-items: center; gap: 18px; margin-bottom: 24px; }
+            .court-box { width: 80vw; }
+            .judge-box { width: 80vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="court-title-bar">Virtual Court Room</div>
+    <div class="overlay"></div>
+    <div class="court-layout">
+        <div class="judge-section">
+            <div class="judge-box">
+                <div class="court-box-title">Judge</div>
+                <div class="judge-avatar">
+                    <img src="images/judge-avatar.png" alt="Judge Avatar" />
+                    <video id="persona-video" autoplay playsinline style="display:none;"></video>
+                </div>
+                <div id="status" style="margin-top: 10px; font-size: 14px; color: #666;">Loading...</div>
+                
+            </div>
+        </div>
+        <div class="bottom-section">
+            <div class="court-box" id="user-box">
+                <div class="court-box-title">You</div>
+                <video id="userVideo" class="user-video" autoplay muted playsinline></video>
+                
+            </div>
+            <div class="court-box">
+                <div class="court-box-title">Opposing Counsellor</div>
+                <div class="avatar-placeholder">👨‍💼</div>
+                
+            </div>
+            <div class="court-box">
+                <div class="court-box-title">Witness</div>
+                <div class="avatar-placeholder">🧑‍⚖️</div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="start-btn-container" id="startBtnContainer">
+        <button class="start-btn" id="startBtn">Start Court Proceedings</button>
+    </div>
+    <script>
+        document.getElementById('startBtn').onclick = function() {
+            // Hide start button and overlay background
+            document.getElementById('startBtnContainer').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+            // Start user webcam
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                .then(stream => {
+                    const video = document.getElementById('userVideo');
+                    video.srcObject = stream;
+                })
+                .catch(() => {
+                    document.getElementById('user-box').innerHTML += '<div style="color:#ffb4b4;">Unable to access camera.</div>';
+                });
+        }
+    </script>
+</body>
+</html>

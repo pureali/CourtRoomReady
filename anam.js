@@ -48,4 +48,4 @@
     }
 
     // Auto-start when page loads
-    startChat();
+    //startChat();
