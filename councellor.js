@@ -6,8 +6,8 @@
 
     //const videoElement = document.getElementById("persona-video");
     const statusElement = document.getElementById("status");
-    
 
+    var client = null;
     async function createSessionToken() {
         const response = await fetch("https://api.anam.ai/v1/auth/session-token", {
             method: "POST",
@@ -30,7 +30,7 @@
         return data.sessionToken;
     }
 
-    export async function startChat(videoElementId="persona-video") {
+    export async function startChatCouncellor(videoElementId="persona-video") {
         try {
             statusElement.textContent = "Creating session...";
 
@@ -39,6 +39,7 @@
 
             const anamClient = createClient(sessionToken);
             await anamClient.streamToVideoElement(videoElementId);
+            client=anamClient;
 
             statusElement.textContent = "Connected! Start speaking to Cara";
 
@@ -47,6 +48,65 @@
             statusElement.textContent = "Failed to connect. Check your API key.";
         }
     }
+    export async function stopStreamingCouncellor(){
+        try{
+            client.stopStreaming();
+            statusElement.textContent = "Streaming stopped.";
+        }catch(error){
+            console.error("Failed to stop streaming:", error);
+        }
 
+
+    }
+    export async function stopCurrentGeneration(){
+        try{
+            client.stopCurrentGeneration();
+            statusElement.textContent = "Current generation stopped.";
+        }catch(error){
+            console.error("Failed to stop current generation:", error);
+        }
+    }
+
+    export async function handleStreamInterruption(correlationId){
+        try{
+            console.log('Handling stream interruption for correlationId:', correlationId);
+            statusElement.textContent = "Stream interrupted. Attempting to recover...";
+            await client.resumeStreamFromInterruption(correlationId);
+            statusElement.textContent = "Stream resumed.";
+        }catch(error){
+            console.error("Failed to handle stream interruption:", error);
+            statusElement.textContent = "Failed to resume stream.";
+        }
+    }   
+ 
+    export async function muteAudio(mute=true){
+        try{
+            
+            if(client){
+                if (mute==true){
+                    anamClient.muteInputAudio();
+
+                }else{
+                    anamClient.unmuteInputAudio();
+                }
+                
+                statusElement.textContent = mute ? "Audio muted." : "Audio unmuted.";
+            }
+        }catch(error){
+            console.error("Failed to mute/unmute audio:", error);
+        }
+    }
+    export async function sendUserMessageCouncellor(message) {
+        try {
+            if(client){
+                await client.sendUserMessage(message);
+                statusElement.textContent = "Message sent.";
+            }
+        } catch (error) {
+            console.error("Failed to send user message:", error);
+            statusElement.textContent = "Failed to send message.";
+        }
+        
+    }
     // Auto-start when page loads
     //startChat();

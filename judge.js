@@ -17,11 +17,11 @@
             },
             body: JSON.stringify({
                 personaConfig: {
-                    name: "Cara",
-                    avatarId: "30fa96d0-26c4-4e55-94a0-517025942e18",
-                    voiceId: "6bfbe25a-979d-40f3-a92b-5394170af54b",
+                    name: "Judge Richard",
+                    avatarId: "19d18eb0-5346-4d50-a77f-26b3723ed79d",
+                    voiceId: "e9104cf7-d163-4f89-b01a-311f2e8943d0",
                     llmId: "0934d97d-0c3a-4f33-91b0-5e136a0ef466",
-                    systemPrompt: "You are Cara, a helpful and friendly AI assistant. Keep responses conversational and concise.",
+                    systemPrompt: "You are Judge Richard, a helpful but firm judge of a civil court. Keep responses conversational and concise.",
                 },
             }),
         });

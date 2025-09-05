@@ -129,6 +129,7 @@
             color: #e8d5b7;
             font-size: 2.8rem;
             background: #1a233a;
+            overflow: hidden;
         }
         .start-btn-container {
             position: fixed;
@@ -193,7 +194,9 @@
             </div>
             <div class="court-box">
                 <div class="court-box-title">Opposing Counsellor</div>
-                <div class="avatar-placeholder">👨‍💼</div>
+                <div class="avatar-placeholder">
+                    <video id="councellor-video" autoplay playsinline style="display:block;"></video>
+                </div>
                 
             </div>
             <div class="court-box">
@@ -213,12 +216,17 @@
     </div>
     <script type="module">
         import { startChat, stopStreaming,sendUserMessage } from './judge.js';
+        import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor } from './councellor.js';
 
+        
         document.getElementById('playBtn').onclick = () => {
             startChat("persona-video");
+            startChatCouncellor("councellor-video");
+
         };
         document.getElementById('stopBtn').onclick = () => {
             stopStreaming();
+            stopStreamingCouncellor();
         };
         document.getElementById('smileBtn').onclick = () => {
             sendUserMessage("Note to AI: show angry and frustration face without saying anything");
