@@ -45,7 +45,10 @@
         .judge-section {
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
             margin-top: 48px;
+            position: relative;
         }
         .judge-box {
             background: rgba(44,62,80,0.95);
@@ -163,12 +166,121 @@
             .bottom-section { gap: 12px; }
             .court-box { width: 30vw; min-width: 140px; }
         }
+        .chatbot-panel {
+            background: rgba(44,62,80,0.95);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+            padding: 20px;
+            width: 350px;
+            height: 450px;
+            border: 2px solid #e8d5b7;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-left: 20px;
+        }
+        .chatbot-header {
+            background: #2d5be3;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(30,40,70,0.3);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            max-height: 300px;
+        }
+        .chatbot-message {
+            background: rgba(45, 85, 255, 0.2);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2d5be3;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ffffff;
+        }
+        .chatbot-suggestion {
+            background: rgba(39, 174, 96, 0.2);
+            border-left: 4px solid #27ae60;
+            color: #ffffff;
+        }
+        .chatbot-warning {
+            background: rgba(231, 76, 60, 0.2);
+            border-left: 4px solid #e74c3c;
+            color: #ffffff;
+        }
+        .chatbot-input {
+            display: flex;
+            gap: 8px;
+        }
+        .chatbot-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background: rgba(30,40,70,0.5);
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .chatbot-input input::placeholder {
+            color: #aaa;
+        }
+        .chatbot-send-btn {
+            background: #2d5be3;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .chatbot-send-btn:hover {
+            background: #1e3a8a;
+        }
+        .chatbot-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #27ae60;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        @media (max-width: 1200px) {
+            .judge-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .chatbot-panel {
+                width: 450px;
+                height: 300px;
+                margin-left: 0;
+            }
+        }
         @media (max-width: 600px) {
             .court-title-bar { font-size: 1.2rem; padding: 14px 0 10px 0; }
             .judge-section { margin-top: 24px; }
             .bottom-section { flex-direction: column; align-items: center; gap: 18px; margin-bottom: 24px; }
             .court-box { width: 80vw; }
             .judge-box { width: 80vw; }
+            .chatbot-panel { width: 80vw; height: 250px; }
         }
     </style>
 </head>
@@ -192,6 +304,19 @@
                 </div>
                 <div id="status" style="margin-top: 10px; font-size: 14px; color: #666;">Loading...</div>
                 
+            </div>
+            <div class="chatbot-panel">
+                <div class="chatbot-status"></div>
+                <div class="chatbot-header">Legal Assistant</div>
+                <div class="chatbot-messages" id="chatbotMessages">
+                    <div class="chatbot-message">
+                        Welcome! I'm tracking both the judge and opposing counsel. I'll analyze their statements and provide strategic legal suggestions to help you respond effectively.
+                    </div>
+                </div>
+                <div class="chatbot-input">
+                    <input type="text" id="chatbotInput" placeholder="Ask for legal advice..." />
+                    <button class="chatbot-send-btn" id="chatbotSendBtn">Send</button>
+                </div>
             </div>
         </div>
         <div class="bottom-section">
@@ -274,18 +399,26 @@
 
         async function messageHistoryJudgeUpdated(messages) {
             console.log('Judge Updated Messages:', messages);
-            if ("case started" in messages[messages.length - 1].toLowerCase()) {
+            
+            // Send the latest judge message to the chatbot for analysis
+            if (messages && messages.length > 0) {
+                const latestMessage = messages[messages.length - 1];
+                if (window.legalAssistant && typeof latestMessage === 'string') {
+                    window.legalAssistant.onJudgeMessage(latestMessage, 'judge');
+                }
+            }
+            
+            if (messages && messages.length > 0 && messages[messages.length - 1].toLowerCase().includes("case started")) {
                 await stopCurrentGeneration();
                 await muteAudio(true);
                 await sendUserMessageCouncellor("The case has started. Speak now.");
             }
-            
-
         }
 
         async function eventJudgeTalking(event){
             setTalkingStatus("judge", true);
             setTalkingStatus("councellor", false);
+            
             if(turn==="judge"){
                 await stopCurrentGenerationCouncellor();
                 turn="councellor";
@@ -297,8 +430,22 @@
         async function eventCouncellorTalking(event){
             setTalkingStatus("judge", false);
             setTalkingStatus("councellor", true);
+            
             if(turn==="councellor"){
                 await stopCurrentGeneration();
+            }
+        }
+
+        // Function to track counsellor messages
+        async function messageHistoryCounsellorUpdated(messages) {
+            console.log('Counsellor Updated Messages:', messages);
+            
+            // Send the latest counsellor message to the chatbot for analysis
+            if (messages && messages.length > 0) {
+                const latestMessage = messages[messages.length - 1];
+                if (window.legalAssistant && typeof latestMessage === 'string') {
+                    window.legalAssistant.onJudgeMessage(latestMessage, 'counsellor');
+                }
             }
         }
 
@@ -309,7 +456,12 @@
             await stopCurrentGenerationCouncellor();
             await eventMessageHistoryUpdated(messageHistoryJudgeUpdated);
             await messageEventReceived(eventJudgeTalking);
-            await messageEventReceivedCouncellor(eventCouncellorTalking); 
+            await messageEventReceivedCouncellor(eventCouncellorTalking);
+            
+            // Set up counsellor message tracking if available
+            if (typeof eventMessageHistoryUpdatedCouncellor !== 'undefined') {
+                await eventMessageHistoryUpdatedCouncellor(messageHistoryCounsellorUpdated);
+            }
         };
         document.getElementById('stopBtn').onclick = () => {
             stopStreaming();
@@ -360,6 +512,176 @@
     </script>
     <!-- Add video analysis script -->
     <script src="video_analysis.js"></script>
+    
+    <!-- Chatbot functionality -->
+    <script>
+        class LegalAssistant {
+            constructor() {
+                this.messagesContainer = document.getElementById('chatbotMessages');
+                this.input = document.getElementById('chatbotInput');
+                this.sendBtn = document.getElementById('chatbotSendBtn');
+                this.judgeMessages = [];
+                this.conversationHistory = [];
+                
+                this.initializeEventListeners();
+                this.startMonitoringJudgeMessages();
+            }
+            
+            initializeEventListeners() {
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+            }
+            
+            startMonitoringJudgeMessages() {
+                // Monitor for judge messages by checking the judge.js module
+                setInterval(() => {
+                    this.analyzeConversation();
+                }, 3000);
+            }
+            
+            addMessage(content, type = 'message') {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chatbot-message ${type}`;
+                messageDiv.textContent = content;
+                this.messagesContainer.appendChild(messageDiv);
+                this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+            }
+            
+            sendMessage() {
+                const message = this.input.value.trim();
+                if (!message) return;
+                
+                this.addMessage(`You: ${message}`, 'message');
+                this.input.value = '';
+                
+                // Simulate AI response based on context
+                setTimeout(() => {
+                    const response = this.generateResponse(message);
+                    this.addMessage(response, 'suggestion');
+                }, 1000);
+            }
+            
+            analyzeConversation() {
+                // This would integrate with the actual judge conversation
+                // For now, we'll simulate analysis
+                const currentTime = new Date();
+                const shouldAnalyze = Math.random() > 0.7; // 30% chance every 3 seconds
+                
+                if (shouldAnalyze) {
+                    const suggestions = this.getContextualSuggestions();
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            this.addMessage(suggestion, 'suggestion');
+                        });
+                    }
+                }
+            }
+            
+            getContextualSuggestions() {
+                const suggestions = [
+                    "💡 Consider asking for clarification on the legal precedent mentioned",
+                    "⚠️ The judge seems to be focusing on procedural matters - prepare your evidence accordingly",
+                    "✅ Good opportunity to present your strongest argument now",
+                    "📋 Consider requesting a brief recess to consult with your client",
+                    "🎯 The judge appears receptive - this is a good time to make your key point",
+                    "⚖️ Be prepared to address the constitutional implications if raised",
+                    "📝 Consider objecting if the opposing counsel makes hearsay statements",
+                    "🔍 Ask for specific case law references to strengthen your position"
+                ];
+                
+                // Return 1-2 random suggestions
+                const numSuggestions = Math.floor(Math.random() * 2) + 1;
+                return suggestions.sort(() => 0.5 - Math.random()).slice(0, numSuggestions);
+            }
+            
+            generateResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                if (lowerMessage.includes('objection') || lowerMessage.includes('object')) {
+                    return "Objection! Consider the following grounds: relevance, hearsay, speculation, or leading questions. Be specific about your objection.";
+                } else if (lowerMessage.includes('evidence') || lowerMessage.includes('proof')) {
+                    return "When presenting evidence, ensure it's properly authenticated, relevant, and not hearsay. Consider the chain of custody for physical evidence.";
+                } else if (lowerMessage.includes('witness') || lowerMessage.includes('testimony')) {
+                    return "For witness testimony, establish credibility first, then move to substantive questions. Avoid leading questions on direct examination.";
+                } else if (lowerMessage.includes('motion') || lowerMessage.includes('request')) {
+                    return "When making motions, be specific about the relief sought and cite relevant legal authority. Prepare for potential opposition arguments.";
+                } else if (lowerMessage.includes('closing') || lowerMessage.includes('argument')) {
+                    return "In closing arguments, summarize key evidence, address weaknesses in your case, and connect facts to legal standards.";
+                } else {
+                    return "I'm analyzing the current proceedings. Based on the context, consider focusing on the legal standards and factual elements that support your position.";
+                }
+            }
+            
+            // Method to be called when judge or counsellor messages are detected
+            onJudgeMessage(message, speaker = 'judge') {
+                this.judgeMessages.push({
+                    content: message,
+                    speaker: speaker,
+                    timestamp: new Date()
+                });
+                
+                // Analyze the message and provide suggestions
+                this.analyzeMessage(message, speaker);
+            }
+            
+            analyzeMessage(message, speaker) {
+                const lowerMessage = message.toLowerCase();
+                const speakerName = speaker === 'judge' ? 'Judge' : 'Opposing Counsel';
+                
+                if (lowerMessage.includes('objection') || lowerMessage.includes('sustained') || lowerMessage.includes('overruled')) {
+                    if (speaker === 'judge') {
+                        this.addMessage("⚖️ The judge ruled on an objection. Note the ruling for your case strategy.", 'warning');
+                    } else {
+                        this.addMessage("⚠️ Opposing counsel made an objection. Be prepared to respond with your argument.", 'warning');
+                    }
+                } else if (lowerMessage.includes('evidence') || lowerMessage.includes('exhibit')) {
+                    if (speaker === 'judge') {
+                        this.addMessage("📋 Judge is discussing evidence. Ensure all your evidence is properly authenticated and relevant.", 'suggestion');
+                    } else {
+                        this.addMessage("📋 Opposing counsel is presenting evidence. Consider objecting if it's inadmissible or prepare counter-evidence.", 'suggestion');
+                    }
+                } else if (lowerMessage.includes('witness') || lowerMessage.includes('testimony')) {
+                    if (speaker === 'judge') {
+                        this.addMessage("👤 Judge is questioning witness testimony. Prepare cross-examination questions if needed.", 'suggestion');
+                    } else {
+                        this.addMessage("👤 Opposing counsel is examining witness. Listen for inconsistencies and prepare cross-examination.", 'suggestion');
+                    }
+                } else if (lowerMessage.includes('motion') || lowerMessage.includes('request')) {
+                    if (speaker === 'judge') {
+                        this.addMessage("📝 Judge is considering a motion. Prepare your response and any counter-arguments.", 'suggestion');
+                    } else {
+                        this.addMessage("📝 Opposing counsel made a motion. Consider objecting and prepare your counter-argument.", 'suggestion');
+                    }
+                } else if (lowerMessage.includes('recess') || lowerMessage.includes('break')) {
+                    this.addMessage("⏰ Court is taking a recess. Use this time to prepare your next arguments.", 'message');
+                } else if (lowerMessage.includes('guilty') || lowerMessage.includes('not guilty')) {
+                    this.addMessage("🎯 Verdict discussion is happening. This is a critical moment - ensure your strongest arguments are clear.", 'warning');
+                } else if (lowerMessage.includes('constitutional') || lowerMessage.includes('constitution')) {
+                    this.addMessage("⚖️ Constitutional issues are being raised. Be prepared to address constitutional implications.", 'suggestion');
+                } else if (lowerMessage.includes('precedent') || lowerMessage.includes('case law')) {
+                    this.addMessage("📚 Legal precedent is being discussed. Have your case law references ready.", 'suggestion');
+                } else if (lowerMessage.includes('burden of proof') || lowerMessage.includes('standard of proof')) {
+                    this.addMessage("⚖️ Burden of proof is being discussed. Ensure you understand who has the burden and what standard applies.", 'suggestion');
+                }
+            }
+        }
+        
+        // Initialize the legal assistant when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.legalAssistant = new LegalAssistant();
+        });
+        
+        // Function to be called from judge.js when messages are received
+        function onJudgeMessageReceived(message) {
+            if (window.legalAssistant) {
+                window.legalAssistant.onJudgeMessage(message);
+            }
+        }
+    </script>
      
 </body>
 </html>
