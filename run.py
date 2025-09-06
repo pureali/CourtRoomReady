@@ -9,6 +9,12 @@ def killPorts():
     if ret != 0:
         print("Port 8080 may not have been in use or failed to kill.")
 
+def runVideoServer():
+    video_api_dir = os.path.join(os.getcwd(), "video_api")
+    try:
+        subprocess.Popen(["python", "video_api.py"], cwd=video_api_dir)
+    except Exception as e:
+        print(f"Error starting video API server: {e}")
 def runHTTPServer():
     PORT = 8080
     Handler = http.server.SimpleHTTPRequestHandler
@@ -28,4 +34,5 @@ if __name__ == "__main__":
     killPorts()  # This is now blocking until the command completes
     runPythonBackend()
     runHTTPServer()
+    #runVideoServer()
     
