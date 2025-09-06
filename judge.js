@@ -153,7 +153,7 @@ This conversation takes place in a virtual courtroom simulation. You see the upl
             if(client){
                 client.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages) => {
                     console.log('Updated Messages:', messages);
-                    //functionCallback(messages);
+                    functionCallback(messages);
                 });
                 statusElement.textContent = "Listening for message history updates.";
             }
