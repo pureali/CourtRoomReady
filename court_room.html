@@ -369,6 +369,7 @@
     import { startChat, muteAudio, stopStreaming, sendUserMessage, eventMessageHistoryUpdated, stopCurrentGeneration, messageEventReceived } from './judge.js';
     import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor, muteAudioCouncellor, messageEventReceivedCouncellor } from './councellor.js';
     var turn="judge"; // Track whose turn it is
+    
     function setTalkingStatus(role, isTalking) {
         if (role === "judge") {
             document.getElementById("judgeTalkingStatus").textContent = isTalking ? "Judge is talking" : "Judge is silent";
@@ -377,23 +378,19 @@
         }
     }
 
-        async function messageHistoryJudgeUpdated(messages) {
-            console.log('Judge Updated Messages:', messages);
-            
-            // Send the latest judge message to the chatbot for analysis
-            if (messages && messages.length > 0) {
-                const latestMessage = messages[messages.length - 1];
-                if (window.legalAssistant && typeof latestMessage === 'string') {
-                    window.legalAssistant.onJudgeMessage(latestMessage, 'judge');
-                }
-            }
-            
-            if (messages && messages.length > 0 && messages[messages.length - 1].toLowerCase().includes("case started")) {
-                await stopCurrentGeneration();
-                await muteAudio(true);
-                await sendUserMessageCouncellor("The case has started. Speak now.");
-            }
+    async function messageHistoryJudgeUpdated(messages) {
+        console.log('Judge Updated Messages:', messages);
+        const lastMsg = messages[messages.length - 1];
+        // Safely get the content property from the last message
+        const lastContent = lastMsg && typeof lastMsg.content === "string" ? lastMsg.content.toLowerCase() : "";
+        if (lastContent.includes("Counsel")) {
+            //await stopCurrentGeneration();
+            await muteAudio(true);
+            await sendUserMessageCouncellor(`The case has started. Ask two questions, wait for the user to answer them and then ask the judge to make a decision.Speak now. Use the context given below
+            background context:
+            ` + lastContent);
         }
+    }
 
         async function eventJudgeTalking(event){
             setTalkingStatus("judge", true);
