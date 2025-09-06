@@ -1,6 +1,15 @@
 
 import { createClient } from "https://esm.sh/@anam-ai/js-sdk@latest";
-import { AnamEvent } from "@anam-ai/js-sdk/dist/module/types"
+//import { AnamEvent } from "@anam-ai/js-sdk/dist/module/type"
+
+anamClient.addListener(AnamEvent.CONNECTION_ESTABLISHED, () => {
+  console.log('Connection Established');
+});
+
+anamClient.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages) => {
+  console.log('Updated Messages:', messages);
+});
+//import { AnamEvent } from "@anam-ai/js-sdk/dist/module/types"
     // Replace with your actual API key
     const API_KEY = "NTk0YTA0YzItNDQ1Mi00YWE2LWEwMTgtMTZiZDg2ODIwY2JmOldBZjkvQnBaci9iQmFzK2kzQ1oyZVlHZHZLY3lTV3hqZ1VlTjl2V3hJTW89"
     //const videoElement = document.getElementById("persona-video");
@@ -140,11 +149,11 @@ This conversation takes place in a virtual courtroom simulation. You see the upl
     }
     export async function eventMessageHistoryUpdated(functionCallback){ 
         try {
-             //console.log('eventMessageHistoryUpdated triggered():', messages);
             if(client){
-                anamClient.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages) => {
-                console.log('Updated Messages:', messages);
-});
+                client.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages) => {
+                    console.log('Updated Messages:', messages);
+                    //functionCallback(messages);
+                });
                 statusElement.textContent = "Listening for message history updates.";
             }
         } catch (error) {
