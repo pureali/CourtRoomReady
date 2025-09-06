@@ -175,6 +175,14 @@
 <body>
     <div class="court-title-bar">Virtual Court Room</div>
     <div class="overlay"></div>
+    <div id="talkingStatusContainer" style="width:100vw; text-align:center; margin-top:80px; margin-bottom:-60px; z-index:3; position:relative;">
+        <div id="judgeTalkingStatus" style="display:inline-block; background:#222; color:#fff; padding:8px 24px; border-radius:8px; margin-right:12px; font-size:1.1rem;">
+            Judge is silent
+        </div>
+        <div id="councellorTalkingStatus" style="display:inline-block; background:#222; color:#fff; padding:8px 24px; border-radius:8px; font-size:1.1rem;">
+            Counsellor is silent
+        </div>
+    </div>
     <div class="court-layout">
         <div class="judge-section">
             <div class="judge-box">
@@ -220,29 +228,94 @@
         <button id="summaryBtn" style="background:#3498db;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Summary</button>
     </div>
     <script>
-        function messageHistoryUpdated(messages) {
-            console.log('Updated Messages:', messages);
-            alert('Message history updated. Check console for details.');
-        }
+    // Import needed functions at top level
+    // import { startChat, stopStreaming, sendUserMessage, eventMessageHistoryUpdated, stopCurrentGeneration, messageEventReceived } from './judge.js';
+    // import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor, muteAudioCouncellor, messageEventReceivedCouncellor } from './councellor.js';
+        
+     var turn="judge";
+    //  async function eventJudgeTalking(event){
+    //     Console.log 
+    //     if(turn==="judge"){
+            
+    //         await stopCurrentGenerationCouncellor();
+    //         turn="councellor";
+             
+    //         // Handle judge talking event
+    //      }else{
+    //         turn="judge";
+    //         await stopCurrentGeneration();
+
+    //      }
+    //  }
+    //  async function eventCouncellorTalking(event){
+    //      if(turn==="councellor"){
+    //          // Handle councellor talking event
+    //      }
+    //  }
+    //  function switchTurn(){
+    //     if(turn==="judge"){
+    //         turn="councellor";
+    //     }else{
+    //         turn="judge";
+    //     }
+    //  }
     </script>
     <script type="module">
-        import { startChat, stopStreaming,sendUserMessage,eventMessageHistoryUpdated } from './judge.js';
-        import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor } from './councellor.js';
+        import { startChat,muteAudio, stopStreaming,sendUserMessage,eventMessageHistoryUpdated,stopCurrentGeneration, messageEventReceived } from './judge.js';
+        import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor, muteAudioCouncellor, messageEventReceivedCouncellor } from './councellor.js';
+    
+        function setTalkingStatus(role, isTalking) {
+            if (role === "judge") {
+                document.getElementById("judgeTalkingStatus").textContent = isTalking ? "Judge is talking" : "Judge is silent";
+            } else if (role === "councellor") {
+                document.getElementById("councellorTalkingStatus").textContent = isTalking ? "Counsellor is talking" : "Counsellor is silent";
+            }
+        }
 
-        
+        async function messageHistoryJudgeUpdated(messages) {
+            console.log('Judge Updated Messages:', messages);
+            if ("case started" in messages[messages.length - 1].text.toLowerCase()) {
+                await stopCurrentGeneration();
+                await muteAudio(true);
+                await sendUserMessageCouncellor("The case has started. Speak now.");
+            }
+            
+
+        }
+
+        async function eventJudgeTalking(event){
+            setTalkingStatus("judge", true);
+            setTalkingStatus("councellor", false);
+            if(turn==="judge"){
+                await stopCurrentGenerationCouncellor();
+                turn="councellor";
+            }else{
+                turn="judge";
+                //await stopCurrentGeneration();
+            }
+        }
+        async function eventCouncellorTalking(event){
+            setTalkingStatus("judge", false);
+            setTalkingStatus("councellor", true);
+            if(turn==="councellor"){
+                await stopCurrentGeneration();
+            }
+        }
 
         document.getElementById('playBtn').onclick = async () => {
             await startChat("persona-video");
+            //await muteAudioCouncellor(true);
             await startChatCouncellor("councellor-video");
-            await eventMessageHistoryUpdated(messageHistoryUpdated);
             await stopCurrentGenerationCouncellor();
-           // await sendUserMessageCouncellor("Note to AI: stop talking and listen carefully to the user without saying anything");
-            
-
+            await eventMessageHistoryUpdated(messageHistoryJudgeUpdated);
+            await messageEventReceived(eventJudgeTalking);
+            await messageEventReceivedCouncellor(eventCouncellorTalking); 
         };
         document.getElementById('stopBtn').onclick = () => {
             stopStreaming();
             stopStreamingCouncellor();
+            setTalkingStatus("judge", false);
+            setTalkingStatus("councellor", false);
         };
         document.getElementById('smileBtn').onclick = () => {
             sendUserMessage("Note to AI: show angry and frustration face without saying anything");

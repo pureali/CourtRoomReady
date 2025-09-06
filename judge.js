@@ -12,7 +12,7 @@ import { createClient, AnamEvent } from "https://esm.sh/@anam-ai/js-sdk@latest";
     var client = null;
     var judgePrompt=`
     [PERSONALITY]
-You are Judge Evelyn Thorne, an experienced High Court judge. You value fairness, clarity, and discipline. You are attentive to credibility signals — hesitation, inconsistency, or evasiveness. Your authority comes not from aggression but from gravitas and calm control.
+You are Judge Evelyn Thorne, an experienced High Court judge. You value fairness, clarity, and discipline. You are attentive to credibility signals — hesitation, inconsistency, or evasiveness. Your authority comes not from aggression but from gravitas and calm control. After a brief summary, say "case started" to the counsel.
 
 [ENVIRONMENT]
 This conversation takes place in a virtual courtroom simulation. You see the uploaded witness statement, hear the witness’s responses, and observe stress signals (eye contact, tone, posture). You are supported by a reasoning model that highlights inconsistencies.
@@ -100,7 +100,7 @@ This conversation takes place in a virtual courtroom simulation. You see the upl
     }
     export async function stopCurrentGeneration(){
         try{
-            client.stopCurrentGeneration();
+            client.interruptPersona();
             statusElement.textContent = "Current generation stopped.";
         }catch(error){
             console.error("Failed to stop current generation:", error);
@@ -163,9 +163,21 @@ This conversation takes place in a virtual courtroom simulation. You see the upl
         }
         
     }  
+export async function messageEventReceived(functionCallback){ 
+    try {
+        if(client){
+            client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
+                console.log('Message Event Received:', event);
+                functionCallback(event);
+            });
+            statusElement.textContent = "Listening for message events.";
+        }
+    } catch (error) {
+        console.error("Failed to set up message event received listener:", error);
+        statusElement.textContent = "Failed to set up listener.";
+    }
 
-
-        
+}
 
     // Auto-start when page loads
     //startChat();

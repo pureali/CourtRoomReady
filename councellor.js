@@ -1,5 +1,5 @@
 
-    import { createClient } from "https://esm.sh/@anam-ai/js-sdk@latest";
+    import { createClient,AnamEvent } from "https://esm.sh/@anam-ai/js-sdk@latest";
     var promptCouncellor = `[PERSONALITY]
         Do not speak until you receive a command: speak now. You are Counsel Adrian Blake, a seasoned barrister. Strategic, adversarial, and relentless, but professional. You pin witnesses to specifics and expose weak points.
            [ENVIRONMENT]
@@ -70,7 +70,12 @@
 
             const anamClient = createClient(sessionToken);
             await anamClient.streamToVideoElement(videoElementId);
+            await anamClient.interruptPersona();
             client=anamClient;
+            client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
+                    console.log('Message Event Received:', event);
+                    anamClient.interruptPersona();
+                });
 
             statusElement.textContent = "Connected! Start speaking to Cara";
             
@@ -92,8 +97,8 @@
     }
     export async function stopCurrentGenerationCouncellor(){
         try{
-            client.stopCurrentGeneration();
-            statusElement.textContent = "Current generation stopped.";
+            client.interruptPersona();
+            statusElement.textContent = "Councellor Current generation stopped.";
         }catch(error){
             console.error("Failed to stop current generation:", error);
         }
@@ -109,9 +114,9 @@
             console.error("Failed to handle stream interruption:", error);
             statusElement.textContent = "Failed to resume stream.";
         }
-    }   
- 
-    export async function muteAudio(mute=true){
+    }
+
+    export async function muteAudioCouncellor(mute=true){
         try{
             
             if(client){
@@ -140,6 +145,19 @@
         }
         
     }
-    
+    export async function messageEventReceivedCouncellor(functionCallback){ 
+        try {
+            if(client){
+                client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
+                    console.log('Message Event Received:', event);
+                    functionCallback(event);
+                });
+                statusElement.textContent = "Listening for message events.";
+            }
+        } catch (error) {
+            console.error("Failed to set up message event received listener:", error);
+            statusElement.textContent = "Failed to set up listener.";
+        }
+    }
     // Auto-start when page loads
     //startChat();
