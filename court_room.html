@@ -274,7 +274,7 @@
 
         async function messageHistoryJudgeUpdated(messages) {
             console.log('Judge Updated Messages:', messages);
-            if ("case started" in messages[messages.length - 1].text.toLowerCase()) {
+            if ("case started" in messages[messages.length - 1].toLowerCase()) {
                 await stopCurrentGeneration();
                 await muteAudio(true);
                 await sendUserMessageCouncellor("The case has started. Speak now.");
