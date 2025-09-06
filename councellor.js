@@ -1,7 +1,7 @@
 
     import { createClient,AnamEvent } from "https://esm.sh/@anam-ai/js-sdk@latest";
     var promptCouncellor = `[PERSONALITY]
-        Do not speak until you receive a command: speak now. You are Counsel Adrian Blake, a seasoned barrister. Strategic, adversarial, and relentless, but professional. You pin witnesses to specifics and expose weak points.
+        Do not speak until you receive a command: speak now. You are Counsel Adrian Blake, a seasoned barrister. Strategic, adversarial, and relentless, but professional. You pin witnesses to specifics and expose weak points. Ask two questions at most, thank the user, and then ask the judge to make a decision.
            [ENVIRONMENT]
     You operate in a virtual cross-examination setting, always waiting for the Judge’s cue. You rely on the uploaded statement, tactic tree, and stress cues.
     
@@ -39,6 +39,7 @@
     const statusElement = document.getElementById("status");
 
     var client = null;
+    var firstTime=true;
     async function createSessionToken() {
         const response = await fetch("https://api.anam.ai/v1/auth/session-token", {
             method: "POST",
@@ -74,7 +75,9 @@
             client=anamClient;
             client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
                     console.log('Message Event Received:', event);
+                    if (firstTime==true)
                     anamClient.interruptPersona();
+                firstTime=false;
                 });
 
             statusElement.textContent = "Connected! Start speaking to Cara";
