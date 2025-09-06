@@ -1,0 +1,1487 @@
+{
+  "summary": {
+    "total_frames_analyzed": 66,
+    "total_faces_detected": 77,
+    "emotion_distribution": {
+      "neutral": 64,
+      "no_face": 2
+    },
+    "average_brightness": 157.65362980389835,
+    "analysis_period": {
+      "start": "2025-09-06T16:13:20.797647",
+      "end": "2025-09-06T16:15:45.422518"
+    }
+  },
+  "detailed_analysis": [
+    {
+      "timestamp": "2025-09-06T16:13:20.797647",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 316,
+          "y": 289,
+          "width": 66,
+          "height": 66,
+          "confidence": 0.8
+        },
+        {
+          "x": 150,
+          "y": 267,
+          "width": 183,
+          "height": 183,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.331298828125,
+      "avg_color": {
+        "blue": 158.28029622395835,
+        "green": 159.27798502604168,
+        "red": 163.06986002604165
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171600.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:20.835668",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 150,
+          "y": 268,
+          "width": 184,
+          "height": 184,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.17193033854167,
+      "avg_color": {
+        "blue": 158.20611002604167,
+        "green": 159.11904296875,
+        "red": 162.8904296875
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171600.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:22.456603",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 123,
+          "y": 257,
+          "width": 187,
+          "height": 187,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.18156575520834,
+      "avg_color": {
+        "blue": 158.072392578125,
+        "green": 159.13411783854167,
+        "red": 162.94069986979167
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:24.480350",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 153,
+          "y": 265,
+          "width": 184,
+          "height": 184,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.2487109375,
+      "avg_color": {
+        "blue": 158.15389322916667,
+        "green": 159.22694661458334,
+        "red": 162.95295247395833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:26.438816",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 136,
+          "y": 262,
+          "width": 179,
+          "height": 179,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.41912434895832,
+      "avg_color": {
+        "blue": 158.299755859375,
+        "green": 159.37645833333335,
+        "red": 163.175126953125
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:28.476896",
+      "faces_detected": 3,
+      "face_data": [
+        {
+          "x": 315,
+          "y": 269,
+          "width": 61,
+          "height": 61,
+          "confidence": 0.8
+        },
+        {
+          "x": 301,
+          "y": 288,
+          "width": 71,
+          "height": 71,
+          "confidence": 0.8
+        },
+        {
+          "x": 126,
+          "y": 253,
+          "width": 191,
+          "height": 191,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.232177734375,
+      "avg_color": {
+        "blue": 158.235,
+        "green": 159.177919921875,
+        "red": 162.97150390625
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:30.452549",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 149,
+          "y": 260,
+          "width": 178,
+          "height": 178,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.77620442708334,
+      "avg_color": {
+        "blue": 158.71665364583333,
+        "green": 159.75308268229168,
+        "red": 163.48166666666665
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:32.452279",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 200,
+          "y": 229,
+          "width": 202,
+          "height": 202,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 156.13787434895832,
+      "avg_color": {
+        "blue": 152.02986002604166,
+        "green": 154.74962890625,
+        "red": 160.31984375
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:34.461576",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 253,
+          "width": 207,
+          "height": 207,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.7715625,
+      "avg_color": {
+        "blue": 156.56539713541667,
+        "green": 157.62528645833333,
+        "red": 161.78826171875
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:36.456310",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 140,
+          "y": 235,
+          "width": 209,
+          "height": 209,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.11286458333333,
+      "avg_color": {
+        "blue": 156.68258463541667,
+        "green": 157.90799153645833,
+        "red": 162.32456380208333
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:38.435113",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 145,
+          "y": 229,
+          "width": 205,
+          "height": 205,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.63796549479167,
+      "avg_color": {
+        "blue": 157.05742838541667,
+        "green": 158.4053125,
+        "red": 162.94817708333332
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171618.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:40.433920",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 189,
+          "y": 217,
+          "width": 186,
+          "height": 186,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.21987630208332,
+      "avg_color": {
+        "blue": 157.43743489583332,
+        "green": 158.97423828125,
+        "red": 163.64333984375
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:42.438946",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 149,
+          "y": 224,
+          "width": 201,
+          "height": 201,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.78881510416667,
+      "avg_color": {
+        "blue": 157.13669270833333,
+        "green": 158.50271484375,
+        "red": 163.22841145833334
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:44.470399",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 158,
+          "y": 235,
+          "width": 180,
+          "height": 180,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.70486002604167,
+      "avg_color": {
+        "blue": 157.06748046875,
+        "green": 158.41171549479168,
+        "red": 163.15392252604167
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:46.448715",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 152,
+          "y": 235,
+          "width": 198,
+          "height": 198,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.83969075520832,
+      "avg_color": {
+        "blue": 157.14250651041667,
+        "green": 158.60439127604167,
+        "red": 163.20480794270833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:48.450061",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 148,
+          "y": 228,
+          "width": 208,
+          "height": 208,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.461708984375,
+      "avg_color": {
+        "blue": 156.774951171875,
+        "green": 158.19748697916665,
+        "red": 162.87461263020833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:50.478391",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 185,
+          "y": 233,
+          "width": 213,
+          "height": 213,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.637724609375,
+      "avg_color": {
+        "blue": 157.04544596354165,
+        "green": 158.391318359375,
+        "red": 162.97636067708333
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:52.441527",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 190,
+          "y": 233,
+          "width": 189,
+          "height": 189,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.41762044270834,
+      "avg_color": {
+        "blue": 157.80708658854167,
+        "green": 159.19484700520835,
+        "red": 163.71481119791667
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:13:54.452574",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 173,
+          "y": 216,
+          "width": 193,
+          "height": 193,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.71605794270835,
+      "avg_color": {
+        "blue": 158.05357096354166,
+        "green": 159.563330078125,
+        "red": 163.913671875
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:09.775244",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 126,
+          "y": 245,
+          "width": 205,
+          "height": 205,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.92461588541667,
+      "avg_color": {
+        "blue": 157.50187825520834,
+        "green": 158.82772786458332,
+        "red": 162.90162109375
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171649.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:11.433181",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 138,
+          "y": 257,
+          "width": 190,
+          "height": 190,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.68451822916666,
+      "avg_color": {
+        "blue": 157.55244791666667,
+        "green": 158.64193359375,
+        "red": 162.445478515625
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:13.423961",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 143,
+          "y": 242,
+          "width": 190,
+          "height": 190,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.65685872395832,
+      "avg_color": {
+        "blue": 158.16937174479168,
+        "green": 159.54119791666668,
+        "red": 163.69871419270834
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:15.438663",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 169,
+          "y": 221,
+          "width": 200,
+          "height": 200,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 161.11944661458332,
+      "avg_color": {
+        "blue": 158.36373697916667,
+        "green": 160.00571614583333,
+        "red": 164.27345703125
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:17.419639",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 189,
+          "y": 246,
+          "width": 184,
+          "height": 184,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 161.02966796875,
+      "avg_color": {
+        "blue": 158.54778645833332,
+        "green": 159.94748697916665,
+        "red": 164.01087890625
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:24.756095",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 177,
+          "y": 237,
+          "width": 191,
+          "height": 191,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 161.279775390625,
+      "avg_color": {
+        "blue": 158.77600260416668,
+        "green": 160.18506510416665,
+        "red": 164.31055989583334
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:25.439505",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 236,
+          "width": 199,
+          "height": 199,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 161.24666666666667,
+      "avg_color": {
+        "blue": 158.94292317708334,
+        "green": 160.145537109375,
+        "red": 164.20206705729166
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:27.442684",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 175,
+          "y": 247,
+          "width": 188,
+          "height": 188,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.61093424479168,
+      "avg_color": {
+        "blue": 158.22298177083334,
+        "green": 159.526162109375,
+        "red": 163.55895833333332
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:29.428760",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 164,
+          "y": 254,
+          "width": 194,
+          "height": 194,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.31583658854166,
+      "avg_color": {
+        "blue": 157.08644205729166,
+        "green": 158.3016015625,
+        "red": 162.07509765625
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:31.568665",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 164,
+          "y": 255,
+          "width": 193,
+          "height": 193,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.05752278645832,
+      "avg_color": {
+        "blue": 156.91965494791665,
+        "green": 158.14830078125,
+        "red": 161.59162434895833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:33.543191",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 170,
+          "y": 254,
+          "width": 194,
+          "height": 194,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.72476888020833,
+      "avg_color": {
+        "blue": 157.6609765625,
+        "green": 158.74276041666667,
+        "red": 162.34990234375
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171673.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:35.564546",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 80,
+          "y": 238,
+          "width": 220,
+          "height": 220,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 157.91994466145835,
+      "avg_color": {
+        "blue": 155.90510416666666,
+        "green": 156.95048177083333,
+        "red": 160.50045247395835
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:37.540689",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 114,
+          "y": 215,
+          "width": 184,
+          "height": 184,
+          "confidence": 0.8
+        },
+        {
+          "x": 301,
+          "y": 285,
+          "width": 81,
+          "height": 81,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.17288736979165,
+      "avg_color": {
+        "blue": 157.797578125,
+        "green": 159.09428059895833,
+        "red": 163.09714192708333
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:39.534190",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 316,
+          "y": 296,
+          "width": 46,
+          "height": 46,
+          "confidence": 0.8
+        },
+        {
+          "x": 118,
+          "y": 254,
+          "width": 201,
+          "height": 201,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 157.963583984375,
+      "avg_color": {
+        "blue": 156.11545247395833,
+        "green": 157.04322916666666,
+        "red": 160.38806966145833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:41.401315",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 315,
+          "y": 288,
+          "width": 65,
+          "height": 65,
+          "confidence": 0.8
+        },
+        {
+          "x": 79,
+          "y": 245,
+          "width": 207,
+          "height": 207,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.93703125,
+      "avg_color": {
+        "blue": 156.90258463541667,
+        "green": 157.94784505208332,
+        "red": 161.57477864583333
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:43.403714",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 150,
+          "y": 256,
+          "width": 192,
+          "height": 192,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.864912109375,
+      "avg_color": {
+        "blue": 159.09728841145832,
+        "green": 159.92227213541668,
+        "red": 163.29717122395834
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:45.435367",
+      "faces_detected": 3,
+      "face_data": [
+        {
+          "x": 314,
+          "y": 289,
+          "width": 69,
+          "height": 69,
+          "confidence": 0.8
+        },
+        {
+          "x": 101,
+          "y": 244,
+          "width": 207,
+          "height": 207,
+          "confidence": 0.8
+        },
+        {
+          "x": 275,
+          "y": 315,
+          "width": 121,
+          "height": 121,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.74351888020834,
+      "avg_color": {
+        "blue": 158.81405598958332,
+        "green": 159.764189453125,
+        "red": 163.29700846354166
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:47.407067",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 266,
+          "y": 314,
+          "width": 124,
+          "height": 124,
+          "confidence": 0.8
+        },
+        {
+          "x": 102,
+          "y": 242,
+          "width": 193,
+          "height": 193,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.54929361979165,
+      "avg_color": {
+        "blue": 158.68003255208333,
+        "green": 159.567470703125,
+        "red": 163.09586588541666
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:49.420012",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 122,
+          "y": 250,
+          "width": 202,
+          "height": 202,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.965,
+      "avg_color": {
+        "blue": 158.17606119791665,
+        "green": 159.00792317708334,
+        "red": 162.43946940104166
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:51.424626",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 105,
+          "y": 249,
+          "width": 212,
+          "height": 212,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.2296484375,
+      "avg_color": {
+        "blue": 157.48700520833333,
+        "green": 158.27928385416666,
+        "red": 161.68281901041667
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:53.425758",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 30,
+          "y": 44,
+          "width": 303,
+          "height": 303,
+          "confidence": 0.8
+        },
+        {
+          "x": 198,
+          "y": 94,
+          "width": 375,
+          "height": 375,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 149.04837239583333,
+      "avg_color": {
+        "blue": 150.264833984375,
+        "green": 147.84123046875,
+        "red": 150.86296223958334
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171693.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:55.460587",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 136,
+          "y": 223,
+          "width": 246,
+          "height": 246,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 142.75431966145834,
+      "avg_color": {
+        "blue": 135.82091796875,
+        "green": 141.108603515625,
+        "red": 148.6319140625
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:57.411071",
+      "faces_detected": 3,
+      "face_data": [
+        {
+          "x": 326,
+          "y": 249,
+          "width": 51,
+          "height": 51,
+          "confidence": 0.8
+        },
+        {
+          "x": 90,
+          "y": 191,
+          "width": 225,
+          "height": 225,
+          "confidence": 0.8
+        },
+        {
+          "x": 328,
+          "y": 293,
+          "width": 54,
+          "height": 54,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 155.42473958333332,
+      "avg_color": {
+        "blue": 153.40401692708335,
+        "green": 154.214541015625,
+        "red": 158.49193033854166
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:14:59.415917",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 155,
+          "y": 197,
+          "width": 256,
+          "height": 256,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 142.588076171875,
+      "avg_color": {
+        "blue": 135.71547200520834,
+        "green": 140.78440104166665,
+        "red": 148.74471028645834
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:01.428087",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 80,
+          "y": 171,
+          "width": 268,
+          "height": 268,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 137.11541015625,
+      "avg_color": {
+        "blue": 129.57526041666668,
+        "green": 134.98791015625,
+        "red": 144.174716796875
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:03.450329",
+      "faces_detected": 0,
+      "face_data": [],
+      "brightness": 128.628828125,
+      "avg_color": {
+        "blue": 120.48322265625,
+        "green": 126.162705078125,
+        "red": 136.53647135416668
+      },
+      "estimated_emotion": "no_face",
+      "frame_quality": "no_face_detected"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:05.408227",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 177,
+          "y": 192,
+          "width": 214,
+          "height": 214,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 155.56797200520833,
+      "avg_color": {
+        "blue": 153.75664388020834,
+        "green": 154.49486328125,
+        "red": 158.27654947916668
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:07.421513",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 201,
+          "y": 216,
+          "width": 184,
+          "height": 184,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 157.62749674479167,
+      "avg_color": {
+        "blue": 156.11252278645833,
+        "green": 156.72410807291666,
+        "red": 159.86732421875
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:09.438447",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 168,
+          "y": 212,
+          "width": 206,
+          "height": 206,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 156.34028645833334,
+      "avg_color": {
+        "blue": 155.078515625,
+        "green": 155.345732421875,
+        "red": 158.686953125
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:11.448080",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 207,
+          "width": 208,
+          "height": 208,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.42001953125,
+      "avg_color": {
+        "blue": 157.08693684895835,
+        "green": 157.43965494791667,
+        "red": 160.76099283854165
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:13.420493",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 209,
+          "width": 200,
+          "height": 200,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.20008138020833,
+      "avg_color": {
+        "blue": 157.04357421875,
+        "green": 157.194775390625,
+        "red": 160.54095377604168
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171713.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:15.408612",
+      "faces_detected": 2,
+      "face_data": [
+        {
+          "x": 423,
+          "y": 98,
+          "width": 47,
+          "height": 47,
+          "confidence": 0.8
+        },
+        {
+          "x": 156,
+          "y": 224,
+          "width": 226,
+          "height": 226,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 147.23545247395833,
+      "avg_color": {
+        "blue": 140.59385416666666,
+        "green": 145.62951497395832,
+        "red": 152.88906901041668
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:17.423136",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 221,
+          "width": 214,
+          "height": 214,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 157.31898763020834,
+      "avg_color": {
+        "blue": 155.57123697916666,
+        "green": 156.30929361979167,
+        "red": 159.882880859375
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:19.417166",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 207,
+          "width": 213,
+          "height": 213,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 157.63039388020835,
+      "avg_color": {
+        "blue": 155.47573893229168,
+        "green": 156.540732421875,
+        "red": 160.5057421875
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:21.419528",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 208,
+          "width": 212,
+          "height": 212,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.19547200520833,
+      "avg_color": {
+        "blue": 156.24628255208333,
+        "green": 157.1309375,
+        "red": 160.92303059895832
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:23.427409",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 160,
+          "y": 193,
+          "width": 206,
+          "height": 206,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.1831640625,
+      "avg_color": {
+        "blue": 157.71078125,
+        "green": 158.20081705729166,
+        "red": 161.56742513020833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:25.432703",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 151,
+          "y": 201,
+          "width": 205,
+          "height": 205,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.35510416666668,
+      "avg_color": {
+        "blue": 157.8499609375,
+        "green": 158.38032877604167,
+        "red": 161.73417643229166
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:27.549527",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 180,
+          "y": 195,
+          "width": 206,
+          "height": 206,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.94674479166667,
+      "avg_color": {
+        "blue": 159.63394856770833,
+        "green": 159.70689127604166,
+        "red": 163.77676106770832
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:29.564879",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 194,
+          "y": 205,
+          "width": 197,
+          "height": 197,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.21613932291666,
+      "avg_color": {
+        "blue": 158.668623046875,
+        "green": 158.99722005208332,
+        "red": 163.12671549479165
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:31.571286",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 195,
+          "y": 217,
+          "width": 183,
+          "height": 183,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 160.17908854166666,
+      "avg_color": {
+        "blue": 158.7160546875,
+        "green": 158.97597005208334,
+        "red": 163.01580729166668
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:33.565871",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 186,
+          "y": 220,
+          "width": 203,
+          "height": 203,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.297890625,
+      "avg_color": {
+        "blue": 156.53626627604166,
+        "green": 157.11480794270832,
+        "red": 161.19818684895833
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good",
+      "saved_frame": "video_analysis_output\\frame_1757171733.jpg"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:35.555706",
+      "faces_detected": 0,
+      "face_data": [],
+      "brightness": 162.05937825520834,
+      "avg_color": {
+        "blue": 161.85651692708333,
+        "green": 161.22877604166666,
+        "red": 163.66578450520834
+      },
+      "estimated_emotion": "no_face",
+      "frame_quality": "no_face_detected"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:37.561765",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 141,
+          "y": 224,
+          "width": 233,
+          "height": 233,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 157.85524739583335,
+      "avg_color": {
+        "blue": 156.736748046875,
+        "green": 156.76054036458333,
+        "red": 160.33412434895834
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:39.552488",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 328,
+          "y": 268,
+          "width": 53,
+          "height": 53,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 159.24519856770834,
+      "avg_color": {
+        "blue": 158.14652994791666,
+        "green": 157.82092447916668,
+        "red": 162.368056640625
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:41.563729",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 152,
+          "y": 226,
+          "width": 211,
+          "height": 211,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.70932291666668,
+      "avg_color": {
+        "blue": 157.71591796875,
+        "green": 157.6513671875,
+        "red": 161.08449544270835
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:43.557683",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 162,
+          "y": 194,
+          "width": 206,
+          "height": 206,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 152.53390299479167,
+      "avg_color": {
+        "blue": 148.17140950520835,
+        "green": 151.00800130208333,
+        "red": 157.10791666666665
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    },
+    {
+      "timestamp": "2025-09-06T16:15:45.422518",
+      "faces_detected": 1,
+      "face_data": [
+        {
+          "x": 194,
+          "y": 222,
+          "width": 186,
+          "height": 186,
+          "confidence": 0.8
+        }
+      ],
+      "brightness": 158.65841145833335,
+      "avg_color": {
+        "blue": 156.89786783854166,
+        "green": 157.67755859375,
+        "red": 161.1512109375
+      },
+      "estimated_emotion": "neutral",
+      "frame_quality": "good"
+    }
+  ],
+  "exported_at": "2025-09-06T16:15:46.813427"
+}
