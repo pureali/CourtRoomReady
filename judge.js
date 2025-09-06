@@ -1,13 +1,43 @@
 
-    import { createClient } from "https://esm.sh/@anam-ai/js-sdk@latest";
-
+import { createClient } from "https://esm.sh/@anam-ai/js-sdk@latest";
+import { AnamEvent } from "@anam-ai/js-sdk/dist/module/types"
     // Replace with your actual API key
-    const API_KEY = "NTJlNDE4ZjYtODQwYy00YTEwLWJkYjAtODliMDI2ZDkzY2I1OnFESWF3V1N5V29qTTVSVGZ5U0daQXNqYXJ1Q3c4QU9BNmtHMFh2eGRPQnM9";
-
+    const API_KEY = "NTk0YTA0YzItNDQ1Mi00YWE2LWEwMTgtMTZiZDg2ODIwY2JmOldBZjkvQnBaci9iQmFzK2kzQ1oyZVlHZHZLY3lTV3hqZ1VlTjl2V3hJTW89"
     //const videoElement = document.getElementById("persona-video");
     const statusElement = document.getElementById("status");
 
     var client = null;
+    var judgePrompt=`
+    [PERSONALITY]
+You are Judge Evelyn Thorne, an experienced High Court judge. You value fairness, clarity, and discipline. You are attentive to credibility signals — hesitation, inconsistency, or evasiveness. Your authority comes not from aggression but from gravitas and calm control.
+
+[ENVIRONMENT]
+This conversation takes place in a virtual courtroom simulation. You see the uploaded witness statement, hear the witness’s responses, and observe stress signals (eye contact, tone, posture). You are supported by a reasoning model that highlights inconsistencies.
+
+[TONE]
+- British RP, steady, deliberate.
+- Default: neutral and measured.
+- When witness is nervous: supportive, gentle pacing, “Take your time, please explain.”
+- When witness is composed: probing, firmer cadence, deliberate pauses.
+- Interventions must be short, formal, and judicial.
+
+[GOAL]
+- Clarify the witness’s narrative.
+- Surface missing details or contradictions.
+- Test reliability without intimidation.
+- Model impartiality.
+
+[GUARDRAILS]
+- Never overlap with Counsel.
+- Reference uploaded document: “In paragraph 14 you said …”
+- If vague: follow up once, then note ambiguity.
+- Never speculate; examine only evidence.
+
+[NUANCED BEHAVIOURS]
+- Restate answers to confirm: “So you are saying … ?”
+- Calmly highlight contradictions: “Earlier you said X, now Y. Which is correct?”
+- If stress rises, lower voice and slow pace.
+    `
     async function createSessionToken() {
         const response = await fetch("https://api.anam.ai/v1/auth/session-token", {
             method: "POST",
@@ -21,8 +51,7 @@
                     avatarId: "19d18eb0-5346-4d50-a77f-26b3723ed79d",
                     voiceId: "e9104cf7-d163-4f89-b01a-311f2e8943d0",
                     llmId: "0934d97d-0c3a-4f33-91b0-5e136a0ef466",
-                    systemPrompt: "You are Judge Richard, a helpful but firm judge of a civil court. Keep responses conversational and concise.",
-                },
+                    systemPrompt: judgePrompt,},
             }),
         });
 
@@ -111,12 +140,11 @@
     }
     export async function eventMessageHistoryUpdated(functionCallback){ 
         try {
-             console.log('eventMessageHistoryUpdated triggered():', messages);
+             //console.log('eventMessageHistoryUpdated triggered():', messages);
             if(client){
-                client.addListener('messageHistoryUpdated', (messages) => {
-                    console.log('Message history updated event received:', messages);
-                    functionCallback(messages);
-                });
+                anamClient.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages) => {
+                console.log('Updated Messages:', messages);
+});
                 statusElement.textContent = "Listening for message history updates.";
             }
         } catch (error) {
