@@ -211,8 +211,13 @@
     </div>
     <div class="court-controls" style="width:100%; text-align:center; margin:30px 0 20px 0;">
         <button id="playBtn" style="background:#2d5be3;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-right:16px;">Run</button>
-        <button id="stopBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Stop</button>
-        <button id="smileBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Smile</button>
+        <button id="stopBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-right:16px;">Stop</button>
+        <button id="smileBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-right:16px;">Smile</button>
+        
+        <!-- Video Analysis Controls -->
+        <button id="startAnalysisBtn" style="background:#27ae60;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-right:16px;">Start Analysis</button>
+        <button id="stopAnalysisBtn" style="background:#e74c3c;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;margin-right:16px;">Stop Analysis</button>
+        <button id="summaryBtn" style="background:#3498db;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:1.1rem;font-weight:bold;cursor:pointer;">Summary</button>
     </div>
     <script>
         function messageHistoryUpdated(messages) {
@@ -259,7 +264,29 @@
                 });
         }
         
+        // Add analysis button handlers
+        document.getElementById('startAnalysisBtn').onclick = function() {
+            if (window.videoAnalyzer) {
+                window.videoAnalyzer.startAnalysis(2); // Analyze every 2 seconds
+            } else {
+                alert('Video analyzer not loaded. Make sure video_analysis.js is included.');
+            }
+        };
+        
+        document.getElementById('stopAnalysisBtn').onclick = function() {
+            if (window.videoAnalyzer) {
+                window.videoAnalyzer.stopAnalysis();
+            }
+        };
+        
+        document.getElementById('summaryBtn').onclick = function() {
+            if (window.videoAnalyzer) {
+                window.videoAnalyzer.getAnalysisSummary();
+            }
+        };
     </script>
+    <!-- Add video analysis script -->
+    <script src="video_analysis.js"></script>
      
 </body>
 </html>
