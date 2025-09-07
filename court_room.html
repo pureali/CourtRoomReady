@@ -388,7 +388,9 @@
 
     async function messageHistoryJudgeUpdated(messages) {
         console.log('Judge Updated Messages:', messages);
-        
+        if (turn=="councellor"){
+            return;
+        }
         // Safely get the content property from the last message
         messageHistory=getMessagesHistory(messages);
         lastMsg = messages && messages.length > 0 ? messages[messages.length - 1] : null;
