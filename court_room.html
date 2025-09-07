@@ -369,7 +369,7 @@
     import { startChat, muteAudio, stopStreaming, sendUserMessage, eventMessageHistoryUpdated, stopCurrentGeneration, messageEventReceived } from './judge.js';
     import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor, muteAudioCouncellor, messageEventReceivedCouncellor } from './councellor.js';
     var turn="judge"; // Track whose turn it is
-   
+    var messageHistory="";
     function getMessagesHistory(messages) {
     if (!Array.isArray(messages)) return "";
     return messages
@@ -393,11 +393,14 @@
         const lastContent = lastMsg && typeof lastMsg.content === "string" ? lastMsg.content.toLowerCase() : "";
         
         if (lastContent.includes("Counsel")) {
-            //await stopCurrentGeneration();
+            await stopCurrentGeneration();
             await muteAudio(true);
             await sendUserMessageCouncellor(`The case has started. Ask two questions, wait for the user to answer them and then ask the judge to make a decision.Speak now. Use the context given below
             background context:
-            ` + lastContent);
+            ` + messageHistory);
+            turn="councellor";
+            setTalkingStatus("judge", false);
+            setTalkingStatus("councellor", true);
         }
     }
 
@@ -418,6 +421,8 @@
             setTalkingStatus("councellor", true);
             
             if(turn==="councellor"){
+                
+                await muteAudio(false);
                 await stopCurrentGeneration();
             }
         }
@@ -436,7 +441,7 @@
         }
 
         document.getElementById('playBtn').onclick = async () => {
-            await startChat("persona-video");
+            await startChat("persona-video", window.context);
             //await muteAudioCouncellor(true);
             await startChatCouncellor("councellor-video");
             await stopCurrentGenerationCouncellor();
@@ -445,9 +450,9 @@
             await messageEventReceivedCouncellor(eventCouncellorTalking);
             
             // Set up counsellor message tracking if available
-            if (typeof eventMessageHistoryUpdatedCouncellor !== 'undefined') {
-                await eventMessageHistoryUpdatedCouncellor(messageHistoryCounsellorUpdated);
-            }
+            // if (typeof eventMessageHistoryUpdatedCouncellor !== 'undefined') {
+            //     await eventMessageHistoryUpdatedCouncellor(messageHistoryCounsellorUpdated);
+            // }
         };
         document.getElementById('stopBtn').onclick = () => {
             stopStreaming();
