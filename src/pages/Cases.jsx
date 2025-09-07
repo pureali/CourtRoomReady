@@ -251,10 +251,10 @@ export default function Cases() {
 
             <div className="grid grid-cols-2 gap-6">
               {allCases.map((case_) => (
-                <Card 
-                  key={case_.id} 
-                  className="bg-surface border border-line hover:shadow-lg transition-all duration-150 cursor-pointer group"
-                >
+                <Link key={case_.id} to={`/case/${case_.id}`}>
+                  <Card 
+                    className="bg-surface border border-line hover:shadow-lg transition-all duration-150 cursor-pointer group"
+                  >
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-3">
                       <h3 className="text-lg font-heading font-semibold text-ink pr-4">
@@ -302,7 +302,8 @@ export default function Cases() {
                       </Button>
                     </div>
                   </CardContent>
-                </Card>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

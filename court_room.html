@@ -400,8 +400,9 @@
         //turn="councellor";
         await stopCurrentGeneration();
         
-        //await muteAudio(true);
+        await muteAudio(true);
         turn="councellor";
+
         await sendUserMessageCouncellor(`The case has started. Ask two questions, wait for the user to answer them.Speak now. Use the context given below
 
         User case:
@@ -445,11 +446,29 @@
                 //await muteAudio(false);
                 await stopCurrentGeneration();
             }
+            else{
+                //turn="judge";
+               await stopCurrentGenerationCouncellor();
+            }
         }
 
         // Function to track counsellor messages
         async function messageHistoryCounsellorUpdated(messages) {
             console.log('Counsellor Updated Messages:', messages);
+            //keep the judge alive
+
+            sendUserMessage("context to AI: don't say anything, don't speak, don't write")
+            if (messages && messages.length > 0) {
+                const latestMessage = messages[messages.length - 1];
+                if (latestMessage && latestMessage.content) {
+                    const lowerContent = latestMessage.content.toLowerCase();
+                    if (lowerContent.includes('judge') && lowerContent.includes('decision')) {
+                        alert("making decision");
+                        turn = "judge";
+                        await sendUserMessage("Speak now The counsellor has asked me to make a decision. Based on the arguments presented and evidence given, I will now make my judgment.");
+                    }
+                }
+            }
             
             // Send the latest counsellor message to the chatbot for analysis
             // if (messages && messages.length > 0) {
@@ -467,8 +486,8 @@
             //await stopCurrentGenerationCouncellor();
             await eventMessageHistoryUpdated(messageHistoryJudgeUpdated);
             await eventMessageHistoryCouncellorUpdated(messageHistoryCounsellorUpdated);
-            await messageEventReceived(eventJudgeTalking);
-            await messageEventReceivedCouncellor(eventCouncellorTalking);
+            //await messageEventReceived(eventJudgeTalking);
+            //await messageEventReceivedCouncellor(eventCouncellorTalking);
             
             // Set up counsellor message tracking if available
             // if (typeof eventMessageHistoryUpdatedCouncellor !== 'undefined') {
@@ -517,9 +536,18 @@
         };
         
         document.getElementById('summaryBtn').onclick = function() {
+            // Get analysis summary if available (suppress errors)
             if (window.videoAnalyzer) {
-                window.videoAnalyzer.getAnalysisSummary();
+                try {
+                    window.videoAnalyzer.getAnalysisSummary();
+                } catch (error) {
+                    // Silently handle any errors from video analyzer
+                    console.log('Video analysis summary not available');
+                }
             }
+            
+            // Redirect to case analytics page
+            window.location.href = 'http://localhost:3000/case/1';
         };
     </script>
     <!-- Add video analysis script -->
