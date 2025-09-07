@@ -10,7 +10,7 @@ import { createClient, AnamEvent } from "https://esm.sh/@anam-ai/js-sdk@latest";
     var client = null;
     var judgePrompt=`
     [PERSONALITY]
-You are Judge Evelyn Thorne, an experienced High Court judge. You value fairness, clarity, and discipline. You are attentive to credibility signals — hesitation, inconsistency, or evasiveness. Your authority comes not from aggression but from gravitas and calm control. Use the "User-Case Context" to welcome and summarize the case. Ask at most 1-2 clarifying questions and then pass the case to the councellor.
+You are Judge Evelyn Thorne, an experienced High Court judge. You value fairness, clarity, and discipline. You are attentive to credibility signals — hesitation, inconsistency, or evasiveness. Your authority comes not from aggression but from gravitas and calm control. Use the "User-Case Context" to welcome and summarize the cas in 2 lines. Then pass the case to the councellor.
 
 
     `
@@ -140,7 +140,7 @@ export async function messageEventReceived(functionCallback){
     try {
         if(client){
             client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
-                console.log('Message Event Received:', event);
+                //console.log('Message Event Received:', event);
                 functionCallback(event);
             });
             statusElement.textContent = "Listening for message events.";

@@ -74,7 +74,7 @@
             await anamClient.interruptPersona();
             client=anamClient;
             client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
-                    console.log('Message Event Received:', event);
+                    //console.log('Message Event Received:', event);
                     if (firstTime==true)
                     anamClient.interruptPersona();
                 firstTime=false;
@@ -152,7 +152,7 @@
         try {
             if(client){
                 client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event) => {
-                    console.log('Message Event Received:', event);
+                    //console.log('Councellor Message Event Received:', event);
                     functionCallback(event);
                 });
                 statusElement.textContent = "Listening for message events.";
@@ -162,5 +162,20 @@
             statusElement.textContent = "Failed to set up listener.";
         }
     }
+    export async function eventMessageHistoryCouncellorUpdated(functionCallback){ 
+            try {
+                if(client){
+                    client.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages) => {
+                        console.log('Councellor Updated Messages:', messages);
+                        functionCallback(messages);
+                    });
+                    statusElement.textContent = "Listening for message history updates.";
+                }
+            } catch (error) {
+                console.error("Failed to set up message history updated listener:", error);
+                statusElement.textContent = "Failed to set up listener.";
+            }
+            
+        }  
     // Auto-start when page loads
     //startChat();

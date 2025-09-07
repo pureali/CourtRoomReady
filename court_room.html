@@ -367,9 +367,10 @@
 </script>
 <script type="module">
     import { startChat, muteAudio, stopStreaming, sendUserMessage, eventMessageHistoryUpdated, stopCurrentGeneration, messageEventReceived } from './judge.js';
-    import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor, muteAudioCouncellor, messageEventReceivedCouncellor } from './councellor.js';
+    import { startChatCouncellor, stopStreamingCouncellor, sendUserMessageCouncellor, stopCurrentGenerationCouncellor, muteAudioCouncellor, messageEventReceivedCouncellor, eventMessageHistoryCouncellorUpdated } from './councellor.js';
     var turn="judge"; // Track whose turn it is
     var messageHistory="";
+    var lastMsg="";
     function getMessagesHistory(messages) {
     if (!Array.isArray(messages)) return "";
     return messages
@@ -390,18 +391,31 @@
         
         // Safely get the content property from the last message
         messageHistory=getMessagesHistory(messages);
+        lastMsg = messages && messages.length > 0 ? messages[messages.length - 1] : null;
         const lastContent = lastMsg && typeof lastMsg.content === "string" ? lastMsg.content.toLowerCase() : "";
+        //turn="councellor";
+        await stopCurrentGeneration();
         
-        if (lastContent.includes("Counsel")) {
-            await stopCurrentGeneration();
-            await muteAudio(true);
-            await sendUserMessageCouncellor(`The case has started. Ask two questions, wait for the user to answer them and then ask the judge to make a decision.Speak now. Use the context given below
-            background context:
+        //await muteAudio(true);
+        turn="councellor";
+        await sendUserMessageCouncellor(`The case has started. Ask two questions, wait for the user to answer them.Speak now. Use the context given below
+
+        User case:
+        ` + window.context + `    
+        background context:
             ` + messageHistory);
-            turn="councellor";
-            setTalkingStatus("judge", false);
-            setTalkingStatus("councellor", true);
-        }
+
+        // if (lastContent.includes("counsellor") && turn==="judge") {
+        //     await stopCurrentGeneration();
+        //     await muteAudio(true);
+        //     await sendUserMessageCouncellor(`The case has started. Ask two questions, wait for the user to answer them and then ask the judge to make a decision.Speak now. Use the context given below
+            
+        //     background context:
+        //     ` + messageHistory);
+        //     turn="councellor";
+        //     setTalkingStatus("judge", false);
+        //     setTalkingStatus("councellor", true);
+        // }
     }
 
         async function eventJudgeTalking(event){
@@ -413,16 +427,18 @@
                 //turn="councellor";
             }else{
                 //turn="judge";
-                //await stopCurrentGeneration();
+                await stopCurrentGeneration();
             }
         }
         async function eventCouncellorTalking(event){
             setTalkingStatus("judge", false);
             setTalkingStatus("councellor", true);
+            //Console.log("Councellor is talking: ", event);
+
             
             if(turn==="councellor"){
                 
-                await muteAudio(false);
+                //await muteAudio(false);
                 await stopCurrentGeneration();
             }
         }
@@ -432,20 +448,21 @@
             console.log('Counsellor Updated Messages:', messages);
             
             // Send the latest counsellor message to the chatbot for analysis
-            if (messages && messages.length > 0) {
-                const latestMessage = messages[messages.length - 1];
-                if (window.legalAssistant && typeof latestMessage === 'string') {
-                    window.legalAssistant.onJudgeMessage(latestMessage, 'counsellor');
-                }
-            }
+            // if (messages && messages.length > 0) {
+            //     const latestMessage = messages[messages.length - 1];
+            //     if (window.legalAssistant && typeof latestMessage === 'string') {
+            //         window.legalAssistant.onJudgeMessage(latestMessage, 'counsellor');
+            //     }
+            // }
         }
 
         document.getElementById('playBtn').onclick = async () => {
             await startChat("persona-video", window.context);
             //await muteAudioCouncellor(true);
             await startChatCouncellor("councellor-video");
-            await stopCurrentGenerationCouncellor();
+            //await stopCurrentGenerationCouncellor();
             await eventMessageHistoryUpdated(messageHistoryJudgeUpdated);
+            await eventMessageHistoryCouncellorUpdated(messageHistoryCounsellorUpdated);
             await messageEventReceived(eventJudgeTalking);
             await messageEventReceivedCouncellor(eventCouncellorTalking);
             
