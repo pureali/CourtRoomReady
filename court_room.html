@@ -355,11 +355,13 @@
     <script>
     // Parse query params from index.html form submission
     function getContextFromQuery() {
-        const params = new URLSearchParams(window.location.search);
-        const fullName = params.get('fullName') || '';
-        const caseType = params.get('caseType') || '';
-        const caseDescription = params.get('caseDescription') || '';
-        let context = `User: ${fullName}\nCase Type: ${caseType}\nCase Description: ${caseDescription}`;
+        // Hardcoded case information
+        const fullName = 'Dr. Patricia Williams';
+        const caseName = 'Meridian v TechCorp';
+        const caseType = 'Commercial Disputes';
+        const caseDescription = 'Breach of the duty of good faith and fair dealing';
+        
+        let context = `User: ${fullName}\nCase Name: ${caseName}\nCase Type: ${caseType}\nCase Description: ${caseDescription}`;
         return context;
     }
     // Make context available globally
